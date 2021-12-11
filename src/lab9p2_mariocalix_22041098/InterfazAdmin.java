@@ -5,6 +5,7 @@
  */
 package lab9p2_mariocalix_22041098;
 
+import chat.chat_server;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,6 +53,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         txt_contrasena = new javax.swing.JTextField();
         txt_edad = new javax.swing.JTextField();
         txt_tipo = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +104,13 @@ public class InterfazAdmin extends javax.swing.JFrame {
 
         jLabel7.setText("Edad");
 
+        jButton1.setText("Chat");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +137,10 @@ public class InterfazAdmin extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
-                        .addComponent(jLabel4)))
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(263, 263, 263)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -165,7 +177,9 @@ public class InterfazAdmin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jb_editar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -263,7 +277,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
                        // guardar.setEnabled(false);
                         //editar.setEnabled(false);
                         //eliminar.setEnabled(false);
-                        desabilitar();
+                        //desabilitar();
                     }
                 } catch (SQLException ex)
                 {
@@ -280,13 +294,13 @@ public class InterfazAdmin extends javax.swing.JFrame {
             Conexion conect = new Conexion();
             con = conect.getConnection();
             Statement st = con.createStatement();
-            String sql = "update Usuarios set Nombre = ?, Usuario = ?, Contrasena = ?, Edad = ?, Tipo = ? where Usuario = ?";
+            String sql = "update Usuarios set Nombre = ?, Contrasena = ?, Edad = ?, Tipo = ? where Usuario = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, txt_nombre.getText());
-            pst.setString(2, txt_usuario.getText());
-            pst.setString(3, txt_contrasena.getText());
-            pst.setString(4, txt_edad.getText());
-            pst.setString(5, txt_tipo.getText());
+            pst.setString(2, txt_contrasena.getText());
+            pst.setString(3, txt_edad.getText());
+            pst.setString(4, txt_tipo.getText());
+            pst.setString(5, txt_usuario.getText());
             int n = pst.executeUpdate();
             if (n > 0)
             {
@@ -294,13 +308,19 @@ public class InterfazAdmin extends javax.swing.JFrame {
                 limpiar();
                 vaciarTabla();
                 verDatos();
-               // desabilitar();
+                desabilitar();
             }
         } catch (SQLException | HeadlessException e)
         {
             JOptionPane.showMessageDialog(this, "LOS DATOS NO HAN SIDO ACTUALIZADOS CORRECTAMENTE", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jb_editarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        chat_server abrir = new chat_server();
+        abrir.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void desabilitar(){
         txt_usuario.setEnabled(false);
@@ -388,6 +408,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

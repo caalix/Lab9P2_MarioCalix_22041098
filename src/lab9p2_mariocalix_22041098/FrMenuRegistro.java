@@ -138,7 +138,7 @@ public class FrMenuRegistro extends javax.swing.JFrame {
         String usuario = txt_usuario.getText();
         String contrasena = txt_contrasena.getText();
         String nombre = txt_nombre.getText();
-        int edad = Integer.parseInt(txt_edad.getText());
+        String edad = txt_edad.getText();
         Usuario obj = new Usuario();
         if(Usuario.verificarUsuarioNuevo(usuario)==-1){
         obj.setNick(usuario);
@@ -147,6 +147,7 @@ public class FrMenuRegistro extends javax.swing.JFrame {
         obj.setEdad(edad);
         ListaaUsuario.agregar(obj);
         JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.");
+        
         }else{
             JOptionPane.showMessageDialog(this, "Este usuario ya esta siendo usado.");
         }
@@ -155,6 +156,7 @@ public class FrMenuRegistro extends javax.swing.JFrame {
     private void jb_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_loginActionPerformed
         LogIn abri = new LogIn();
         abri.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jb_loginActionPerformed
 
     /**

@@ -15,6 +15,7 @@ public class Usuario {
 
     private String nick, contrasena, nombre,edad;
 
+
     public String getNick() {
         return nick;
     }
@@ -46,6 +47,8 @@ public class Usuario {
     public void setEdad(String edad) {
         this.edad = edad;
     }
+
+   
 
     public static int verificarUsuarioNuevo(String usuario) {
         Vector lista = mostrar();

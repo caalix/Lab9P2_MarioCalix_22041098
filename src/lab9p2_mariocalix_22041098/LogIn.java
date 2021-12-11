@@ -110,13 +110,16 @@ public class LogIn extends javax.swing.JFrame {
     private void jb_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ingresarActionPerformed
         String usuario = txt_usuario.getText();
         String contrasena = txt_contrasena.getText();
+        
         int pos = Usuario.verificarLogueo(usuario, contrasena);
-        if(pos==-1){
-            JOptionPane.showMessageDialog(this, "Usuario o contrasena incorrecta");
-        }else if(txt_usuario.getText().equals(u)  &&  txt_contrasena.getText().equals(p)){
+        if(txt_usuario.getText().equals("admin")  &&  txt_contrasena.getText().equals("123")){
             txt_usuario.setText("");
             txt_contrasena.setText("");
-            // abrir jdialog
+            InterfazAdmin abrir = new InterfazAdmin();
+            abrir.setVisible(true);
+            //this.dispose();
+        }else if(pos==-1){
+            JOptionPane.showMessageDialog(this, "Usuario o contrasena incorrecta");
         }else{
             chat_client abrir = new chat_client();
             abrir.setVisible(true);
